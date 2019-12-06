@@ -17,7 +17,7 @@ namespace Fps.WorkerConnectors
         private bool isReadyToSpawn;
         private bool wantsSpawn;
         private Action<PlayerCreator.CreatePlayer.ReceivedResponse> onPlayerResponse;
-        private AdvancedEntityPipeline entityPipeline;
+        private FpsGameObjectCreator entityPipeline;
 
         public bool HasConnected => Worker != null;
         protected bool UseSessionFlow => !string.IsNullOrEmpty(deployment);
@@ -98,7 +98,7 @@ namespace Fps.WorkerConnectors
             PlayerLifecycleHelper.AddClientSystems(world, autoRequestPlayerCreation: false);
             PlayerLifecycleConfig.MaxPlayerCreationRetries = 0;
 
-            entityPipeline = new AdvancedEntityPipeline(Worker, GetAuthPlayerPrefabPath(), GetNonAuthPlayerPrefabPath());
+            entityPipeline = new FpsGameObjectCreator(Worker, GetAuthPlayerPrefabPath(), GetNonAuthPlayerPrefabPath());
             entityPipeline.OnRemovedAuthoritativePlayer += RemovingAuthoritativePlayer;
 
             // Set the Worker gameObject to the ClientWorker so it can access PlayerCreater reader/writers

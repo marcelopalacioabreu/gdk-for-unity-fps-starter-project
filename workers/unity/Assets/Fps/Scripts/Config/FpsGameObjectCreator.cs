@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace Fps.Config
 {
-    public class AdvancedEntityPipeline : IEntityGameObjectCreator
+    public class FpsGameObjectCreator : IEntityGameObjectCreator
     {
         private const string PlayerEntityType = "Player";
 
@@ -35,7 +35,7 @@ namespace Fps.Config
             typeof(Rigidbody)
         };
 
-        public AdvancedEntityPipeline(WorkerInWorld worker, string authPlayer, string nonAuthPlayer)
+        public FpsGameObjectCreator(WorkerInWorld worker, string authPlayer, string nonAuthPlayer)
         {
             workerId = worker.WorkerId;
             workerType = worker.WorkerType;
